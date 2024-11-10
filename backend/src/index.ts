@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
-import blog from './blog'
-import user from './user'
+import blog from './routes/blog'
+import user from './routes/user'
 
 const app = new Hono()
 
