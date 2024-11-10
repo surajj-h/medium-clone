@@ -10,6 +10,16 @@ const user = new Hono<{
   }
 }>()
 
+async function hashPassword(pass: string) {
+  const encoder = new TextEncoder()
+  const password = encoder.encode(pass)
+
+  const hashBuffer = await crypto.subtle.digest('SHA-256', password)
+  const hashArray = Array.from(new Uint8Array(hashBuffer))
+  const hashedPassword = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('')
+  return hashedPassword;
+}
+
 user.post('/signup', async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL
@@ -17,10 +27,11 @@ user.post('/signup', async (c) => {
 
   try {
     const body = await c.req.json()
+    const hashedPassword = await hashPassword(body.password)
     const user = await prisma.user.create({
       data: {
         email: body.email,
-        password: body.password
+        password: hashedPassword
       }
     })
     const jwt = await sign({ id: user.id }, c.env.JWT_SECRET)
@@ -39,10 +50,11 @@ user.post('/signin', async (c) => {
 
   try {
     const body = await c.req.json()
+    const hashedPassword = await hashPassword(body.password)
     const user = await prisma.user.findFirst({
       where: {
         email: body.email,
-        password: body.password
+        password: hashedPassword
       }
     })
     if (user) {
