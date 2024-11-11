@@ -19,6 +19,7 @@ model User{
     name String?
     password String
     posts Post[]
+    description String
 }
 
 model Post{
@@ -27,5 +28,6 @@ model Post{
     content String
     published Boolean @default(false)
     author User @relation(fields:[authorId],references:[id])
-    authorId String 
+    authorId String
+    timetoread String
 }
