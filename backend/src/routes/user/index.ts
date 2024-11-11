@@ -1,7 +1,8 @@
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
+import { signinInput, signupInput } from "@suraj_h/medium-common";
 import { Hono } from "hono";
-import { decode, sign, verify } from "hono/jwt";
+import { sign } from "hono/jwt";
 
 const user = new Hono<{
   Bindings: {
@@ -27,6 +28,11 @@ user.post('/signup', async (c) => {
 
   try {
     const body = await c.req.json()
+    const { success } = signupInput.safeParse(body);
+    if (!success) {
+      c.status(411)
+      return c.json({ message: "Incorrect inputs" })
+    }
     const hashedPassword = await hashPassword(body.password)
     const user = await prisma.user.create({
       data: {
@@ -50,6 +56,10 @@ user.post('/signin', async (c) => {
 
   try {
     const body = await c.req.json()
+    const { success } = signinInput.safeParse(body);
+    if (!success) {
+      return c.json({ message: "Inputs not correct" })
+    }
     const hashedPassword = await hashPassword(body.password)
     const user = await prisma.user.findFirst({
       where: {

@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
+import { createBlogInput, updateBlogInput } from "@suraj_h/medium-common";
 import { Hono } from "hono";
 import { verify } from "hono/jwt";
 
@@ -32,6 +33,10 @@ blogRouter.post('/create', async (c) => {
 
   try {
     const body = await c.req.json()
+    const { success } = createBlogInput.safeParse(body)
+    if (!success) {
+      return c.json({ message: "Title and Content should be of type string" })
+    }
     const post = await prisma.post.create({
       data: {
         title: body.title,
@@ -53,6 +58,10 @@ blogRouter.put('/update', async (c) => {
 
   try {
     const body = await c.req.json()
+    const { success } = updateBlogInput.safeParse(body);
+    if (!success) {
+      return c.json({ message: "title and Content should be of type string" })
+    }
     const post = await prisma.post.update({
       where: {
         id: body.id,
