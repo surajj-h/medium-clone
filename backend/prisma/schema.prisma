@@ -19,7 +19,7 @@ model User{
     name String?
     password String
     posts Post[]
-    description String
+    description String?
 }
 
 model Post{
