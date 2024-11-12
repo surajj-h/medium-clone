@@ -13,7 +13,7 @@ export const signinInput = z.object({
   password: z.string().min(6)
 })
 
-export type SiginInput = z.infer<typeof signinInput>
+export type SigninInput = z.infer<typeof signinInput>
 
 export const createBlogInput = z.object({
   title: z.string(),
