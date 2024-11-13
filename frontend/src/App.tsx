@@ -3,9 +3,9 @@ import { Signup } from "./pages/SignupPage"
 import { Signin } from "./pages/SigninPage"
 import { Blog } from "./pages/Blog"
 import { ThemeProvider } from "./components/theme-provider"
+import { Blogs } from "./pages/Blogs"
 
 function App() {
-
   return (
     <>
       <ThemeProvider>
@@ -14,6 +14,7 @@ function App() {
             <Route path='/signup' element={<Signup />} />
             <Route path='/signin' element={<Signin />} />
             <Route path='/blog' element={<Blog />} />
+            <Route path='/blogs' element={<Blogs />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
