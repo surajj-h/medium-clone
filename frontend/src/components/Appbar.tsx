@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Avatar } from "./BlogCard"
 import { ModeToggle } from "./mode-toggle"
 import { useState, useEffect } from 'react'
@@ -28,7 +29,9 @@ export const Appbar = () => {
         }`}
     >
       <div className="text-3xl font-sans font-bold relative z-50">
-        Medium
+        <Link to={'/blogs'}>
+          Medium
+        </Link>
       </div>
       <div className="flex items-center gap-4 relative z-0">
         <ModeToggle />
