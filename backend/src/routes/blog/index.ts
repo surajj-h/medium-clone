@@ -43,6 +43,16 @@ blogRouter.post('/create', async (c) => {
         authorId: c.get('authorId')
       }
     })
+    await prisma.user.update({
+      where: {
+        id: c.get('authorId')
+      },
+      data: {
+        totalPostCount: {
+          increment: 1
+        }
+      }
+    })
     return c.json({ post })
   } catch (e) {
     c.status(400)
