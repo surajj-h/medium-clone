@@ -118,7 +118,15 @@ blogRouter.get('/:blogid', async (c) => {
       },
       select: {
         title: true,
-        content: true
+        content: true,
+        id: true,
+        author: {
+          select: {
+            name: true,
+            description: true,
+            totalPostCount: true
+          }
+        }
       }
     })
     return c.json({ blog })

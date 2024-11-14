@@ -20,6 +20,7 @@ model User{
     password String
     posts Post[]
     description String?
+    totalPostCount Int @default(0)
 }
 
 model Post{
