@@ -15,13 +15,16 @@ export const Blogs = () => {
           <SkeletonCard />
           <SkeletonCard />
           <SkeletonCard />
+          <SkeletonCard />
         </>
         ) :
           blogs.map(blog => <BlogCard
+            key={blog.id}
             authorName={blog.author.name}
             title={blog.title}
             content={blog.title}
             publishedDate="23 dec 2024"
+            blogid={blog.id}
           />)}
       </div>
     </div>
