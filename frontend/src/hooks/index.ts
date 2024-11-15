@@ -23,6 +23,29 @@ interface Blog {
   }
 }
 
+export const useCurrentUserBlogs = () => {
+  const [isLoading, setIsLoading] = useState(true)
+  const [userBlogs, setUserBlogs] = useState<Blogs[]>()
+  const BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
+
+  useEffect(() => {
+    axios.get(`${BACKEND_URL}/api/v1/blog/userblogs`, {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('jwtToken')
+      }
+    }).then(response => {
+      setUserBlogs(response.data.blogs)
+      setIsLoading(false)
+    })
+  }, [])
+
+  return {
+    isLoading,
+    userBlogs
+  }
+
+}
+
 export const useBlog = ({ id }: { id: string }) => {
   const [loading, setLoading] = useState(true)
   const [blog, setBlog] = useState<Blog>();
