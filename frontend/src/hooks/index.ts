@@ -5,9 +5,9 @@ interface Blogs {
   "title": string;
   "content": string;
   "id": string;
+  "publishedDate": string,
   "author": {
     "name": string,
-
   }
 }
 
@@ -15,13 +15,13 @@ interface Blog {
   "title": string;
   "content": string;
   "id": string;
+  "publishedDate": string,
   "author": {
     "name": string,
     "description": string,
     "totalPostCount": number
   }
 }
-
 
 export const useBlog = ({ id }: { id: string }) => {
   const [loading, setLoading] = useState(true)

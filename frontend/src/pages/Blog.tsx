@@ -85,7 +85,7 @@ export const Blog = () => {
           authorName={blog.author.name}
           title={blog.title}
           content={blog.content}
-          publishedDate="23 Dec 2024"
+          publishedDate={blog.publishedDate}
           id={blog.id}
           authorDescription={blog.author.description}
           totalPostCount={blog.author.totalPostCount}

@@ -28,11 +28,18 @@ export const Publish = () => {
   };
 
   const handlePublish = async () => {
+    const date = new Date()
+    const formattedDate = date.toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+    });
     setPublishState('publishing');
     try {
       const response = await axios.post(`${BACKEND_URL}/api/v1/blog/create`, {
         title,
-        content
+        content,
+        publishedDate: formattedDate
       }, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem('jwtToken')
