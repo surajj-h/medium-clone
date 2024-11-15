@@ -1,10 +1,12 @@
 import { Hono } from 'hono'
-import blog from './blog'
-import user from './user'
+import blogRouter from './routes/blog'
+import userRouter from './routes/user'
+import { cors } from 'hono/cors'
 
 const app = new Hono()
+app.use('/*', cors())
 
-app.route('/api/v1/user', user)
-app.route('/api/v1/blog', blog)
+app.route('/api/v1/user', userRouter)
+app.route('/api/v1/blog', blogRouter)
 
 export default app
