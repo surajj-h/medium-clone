@@ -38,7 +38,7 @@ export const Blog = () => {
 
               <div className="hidden lg:block lg:col-span-1">
                 <div className="sticky top-8 space-y-6">
-                  <div className="flex flex-col items-center p-6 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
+                  <div className="flex flex-col items-center p-6 bg-white dark:bg-black rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
                     <Skeleton className="h-12 w-12 rounded-full" />
 
                     <div className="mt-4 text-center w-full">
@@ -58,14 +58,6 @@ export const Blog = () => {
                     <Skeleton className="h-9 w-full mt-6" />
                   </div>
 
-                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 p-4">
-                    <div className="grid grid-cols-1 gap-4 text-center">
-                      <div>
-                        <Skeleton className="h-8 w-16 mx-auto" />
-                        <Skeleton className="h-4 w-12 mx-auto mt-1" />
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -85,7 +77,7 @@ export const Blog = () => {
           authorName={blog.author.name}
           title={blog.title}
           content={blog.content}
-          publishedDate="23 Dec 2024"
+          publishedDate={blog.publishedDate}
           id={blog.id}
           authorDescription={blog.author.description}
           totalPostCount={blog.author.totalPostCount}

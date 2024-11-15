@@ -32,7 +32,7 @@ export const FullBlog = ({
             </svg>
             Published on {publishedDate}
           </div>
-          <div className="prose prose-lg dark:prose-invert max-w-none">
+          <div style={{ whiteSpace: "pre-wrap" }} className="prose prose-lg dark:prose-invert max-w-none">
             {content}
           </div>
         </div>
@@ -42,16 +42,17 @@ export const FullBlog = ({
         </div>
 
         <div className="hidden lg:block lg:col-span-1">
-          <div className="sticky top-8 space-y-6">
-            <div className="flex flex-col items-center p-6 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700">
+          <div className="sticky top-20 space-y-6">
+            <div className="flex flex-col items-center p-6 bg-white dark:bg-black rounded-lg shadow-sm border border-gray-200 dark:border-gray-800">
               <Avatar authorName={authorName} size={12} />
               <div className="mt-4 text-center">
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
                   {authorName[0].toUpperCase() + authorName.slice(1)}
                 </h2>
                 <p className="mt-1 text-sm font-medium text-gray-500 dark:text-gray-400">
-                  Author
+                  {totalPostCount} Blogs
                 </p>
+
                 <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
                   <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                     {authorDescription}
@@ -65,14 +66,6 @@ export const FullBlog = ({
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 p-4">
-              <div className="grid grid-cols-1 gap-4 text-center">
-                <div>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{totalPostCount}</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Posts</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
