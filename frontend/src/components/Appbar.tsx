@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Avatar } from "./BlogCard"
 import { ModeToggle } from "./mode-toggle"
 import { useState, useEffect } from 'react'
 
 export const Appbar = () => {
+  const location = useLocation()
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,6 +35,11 @@ export const Appbar = () => {
         </Link>
       </div>
       <div className="flex items-center gap-4 relative z-0">
+        {location.pathname !== '/publish' &&
+          <Link to={'/publish'}>
+            <button type="button" className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-1 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">New</button>
+          </Link>
+        }
         <ModeToggle />
         <div className="relative z-0">
           <Avatar authorName="Suraj" size={9} />
