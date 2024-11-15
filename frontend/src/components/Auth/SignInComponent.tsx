@@ -23,6 +23,7 @@ export const SignInComponent = () => {
       setLogin("Login")
       const jwt = response.data.jwt;
       if (jwt) {
+        localStorage.setItem('userName', response.data.name)
         localStorage.setItem("jwtToken", jwt)
         navigate("/blogs")
       } else {

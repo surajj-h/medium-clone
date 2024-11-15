@@ -11,8 +11,8 @@ export const NavagationBar = ({
         onClick={() => onTabChange('all')}
         className={`relative py-2 transition-colors duration-200 
           ${activeTab === 'all'
-            ? 'text-primary text-black dark:text-white'
-            : 'text-muted-foreground hover:text-primary dark:text-white'
+            ? 'text-black dark:text-white'
+            : 'text-muted-foreground hover:text-primary dark:text-muted-foreground'
           }`}
       >
         For You
@@ -25,8 +25,8 @@ export const NavagationBar = ({
         onClick={() => onTabChange('my')}
         className={`relative py-2 transition-colors duration-200 
           ${activeTab === 'my'
-            ? 'text-primary text-black dark:text-white'
-            : 'text-muted-foreground hover:text-primary dark:text-white'
+            ? 'text-black dark:text-white'
+            : 'text-muted-foreground hover:text-primary dark:text-muted-foreground'
           }`}
       >
         My Blogs

@@ -1,13 +1,22 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Avatar } from "./BlogCard"
 import { ModeToggle } from "./mode-toggle"
 import { useState, useEffect } from 'react'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export const Appbar = () => {
   const location = useLocation()
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,7 +51,20 @@ export const Appbar = () => {
         }
         <ModeToggle />
         <div className="relative z-0">
-          <Avatar authorName="Suraj" size={9} />
+
+          <DropdownMenu>
+            <DropdownMenuTrigger> <Avatar authorName={localStorage.getItem('userName') || ""} size={9} /></DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>{localStorage.getItem('userName')}</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => {
+                localStorage.setItem('jwtToken', " ")
+                localStorage.setItem('userName', " ")
+                navigate('/signup')
+              }}>Logout</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
         </div>
 
       </div>

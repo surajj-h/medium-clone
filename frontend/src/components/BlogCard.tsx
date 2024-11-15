@@ -31,7 +31,7 @@ export const BlogCard = ({
         {publishedDate}
       </div>
       <div className="font-thin text-sm px-2">
-        {Math.ceil(content.length / 100)} minute read
+        {Math.ceil(content.length / 750)} minute read
       </div>
     </div>
   </div>

@@ -12,7 +12,6 @@ export const SignUpComponent = () => {
     email: "",
     password: ""
   })
-
   const [signup, setSignup] = useState("Signup")
 
   async function sendRequest() {
@@ -22,6 +21,7 @@ export const SignUpComponent = () => {
       const response = await axios.post(`${BACKEND_URL}/api/v1/user/signup`, postInputs)
       setSignup("Signup")
       const jwt = response.data.jwt;
+      localStorage.setItem('userName', response.data.name)
       localStorage.setItem("jwtToken", jwt)
       navigate('/blogs')
     } catch (e) {
