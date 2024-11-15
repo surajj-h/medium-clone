@@ -40,7 +40,8 @@ blogRouter.post('/create', async (c) => {
       data: {
         title: body.title,
         content: body.content,
-        authorId: c.get('authorId')
+        authorId: c.get('authorId'),
+        publishedDate: body.publishedDate
       }
     })
     await prisma.user.update({
@@ -102,6 +103,7 @@ blogRouter.get('/bulk', async (c) => {
         title: true,
         content: true,
         id: true,
+        publishedDate: true,
         author: {
           select: {
             name: true
@@ -130,6 +132,7 @@ blogRouter.get('/:blogid', async (c) => {
         title: true,
         content: true,
         id: true,
+        publishedDate: true,
         author: {
           select: {
             name: true,
