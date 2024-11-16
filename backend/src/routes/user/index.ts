@@ -42,7 +42,7 @@ user.post('/signup', async (c) => {
       }
     })
     const jwt = await sign({ id: user.id }, c.env.JWT_SECRET)
-    return c.json({ jwt })
+    return c.json({ jwt, name: user.name })
   }
   catch (e) {
     c.status(403);
@@ -70,7 +70,7 @@ user.post('/signin', async (c) => {
     })
     if (user) {
       const jwt = await sign({ id: user.id }, c.env.JWT_SECRET);
-      return c.json({ jwt })
+      return c.json({ jwt, name: user.name })
     } else {
       return c.json({ message: "Invalid credentials" })
     }
@@ -79,5 +79,6 @@ user.post('/signin', async (c) => {
     return c.json({ message: e })
   }
 })
+
 
 export default user
